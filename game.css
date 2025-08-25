@@ -1,0 +1,262 @@
+/* 基本スタイル */
+body {
+    font-family: 'Mochiy Pop One', sans-serif;
+    /* カラフルなグラデーション背景 */
+    background: linear-gradient(135deg, #fbc2eb 0%, #a6c1ee 100%);
+    margin: 0;
+    padding: 20px;
+    color: #444;
+    -webkit-tap-highlight-color: transparent;
+    overflow: hidden; /* 画面のちらつき防止 */
+}
+
+.container {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    text-align: center;
+    min-height: calc(100vh - 40px);
+}
+
+/* タイトル */
+.main-title, .game-title {
+    font-size: 3em;
+    color: #fff;
+    /* よりPOPな影 */
+    text-shadow: 3px 3px 0 #ff6347, 6px 6px 0 #1e90ff, 9px 9px 0 #32cd32;
+    margin-bottom: 40px;
+    animation: bounce-in 0.6s ease-out;
+}
+@keyframes bounce-in {
+    0% { transform: scale(0.5); opacity: 0; }
+    100% { transform: scale(1); opacity: 1; }
+}
+
+/* モード選択ボタン */
+.mode-selection button {
+    font-family: 'Mochiy Pop One', sans-serif;
+    font-size: 1.8em;
+    padding: 20px 40px;
+    margin: 15px;
+    border: none;
+    border-radius: 50px; /* 丸みを強く */
+    color: white;
+    background: linear-gradient(145deg, #ff6b6b, #feca57);
+    box-shadow: 0 10px 20px rgba(0,0,0,0.15);
+    cursor: pointer;
+    transition: all 0.2s cubic-bezier(0.25, 0.46, 0.45, 0.94);
+}
+.mode-selection button:hover {
+    transform: translateY(-5px) scale(1.05);
+}
+.mode-selection button:active {
+    transform: translateY(2px) scale(0.95);
+    box-shadow: 0 5px 10px rgba(0,0,0,0.15);
+}
+
+/* 戻るボタン */
+.back-btn {
+    position: absolute;
+    top: 20px;
+    left: 20px;
+    font-family: 'Mochiy Pop One', sans-serif;
+    font-size: 1em;
+    padding: 10px 15px;
+    border: none;
+    border-radius: 10px;
+    background-color: #ff6347;
+    color: white;
+    cursor: pointer;
+    box-shadow: 2px 2px 5px rgba(0,0,0,0.2);
+    z-index: 10;
+}
+
+/* --- ルーレット --- */
+.name-input-area {
+    display: flex;
+    margin-bottom: 20px;
+}
+#name-input {
+    font-family: 'Mochiy Pop One', sans-serif;
+    width: 60vw;
+    max-width: 200px;
+    padding: 12px;
+    font-size: 1em;
+    border: 3px solid #555;
+    border-radius: 10px 0 0 10px;
+}
+#add-name-btn {
+    font-family: 'Mochiy Pop One', sans-serif;
+    padding: 12px;
+    font-size: 1em;
+    border: 3px solid #555;
+    border-left: none;
+    border-radius: 0 10px 10px 0;
+    background-color: #32cd32;
+    color: white;
+    cursor: pointer;
+}
+#name-list {
+    list-style: none;
+    padding: 0;
+    margin: 0 0 20px 0;
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: center;
+    max-width: 90vw;
+}
+#name-list li {
+    background-color: #fff;
+    padding: 8px 15px;
+    margin: 5px;
+    border-radius: 20px;
+    box-shadow: 0 2px 4px rgba(0,0,0,0.1);
+    position: relative;
+    font-size: 0.9em;
+}
+.delete-btn {
+    background-color: #ff6347;
+    color: white;
+    border: none;
+    border-radius: 50%;
+    width: 22px;
+    height: 22px;
+    margin-left: 8px;
+    cursor: pointer;
+    font-weight: bold;
+}
+
+.roulette-wrapper {
+    position: relative;
+    width: 300px;
+    height: 300px;
+    margin-bottom: 20px;
+}
+#roulette-canvas {
+    filter: drop-shadow(0 5px 10px rgba(0,0,0,0.2));
+}
+.arrow {
+    position: absolute;
+    top: -15px; /* 少し上に */
+    left: 50%;
+    transform: translateX(-50%);
+    width: 0;
+    height: 0;
+    border-left: 25px solid transparent;
+    border-right: 25px solid transparent;
+    border-top: 40px solid #ff6347;
+    filter: drop-shadow(0 2px 3px rgba(0,0,0,0.3));
+}
+.start-btn {
+    font-family: 'Mochiy Pop One', sans-serif;
+    font-size: 2em;
+    padding: 15px 50px;
+    border: none;
+    border-radius: 15px;
+    color: white;
+    background: #1e90ff;
+    box-shadow: 0 8px 0 #005aa7, 0 12px 20px rgba(0,0,0,0.2);
+    cursor: pointer;
+    transition: all 0.1s ease-out;
+}
+.start-btn:active {
+    transform: translateY(4px);
+    box-shadow: 0 4px 0 #005aa7, 0 8px 10px rgba(0,0,0,0.2);
+}
+.start-btn:disabled {
+    background-color: #ccc;
+    box-shadow: 0 8px 0 #999;
+    cursor: not-allowed;
+}
+
+/* --- ロシアン --- */
+.russian-description {
+    font-size: 1.2em;
+    margin-bottom: 30px;
+    color: #fff;
+    text-shadow: 1px 1px 3px rgba(0,0,0,0.3);
+}
+#russian-btn {
+    font-family: 'Mochiy Pop One', sans-serif;
+    font-size: 4em;
+    width: 250px;
+    height: 250px;
+    border: none;
+    border-radius: 50%;
+    color: white;
+    background: linear-gradient(145deg, #feca57, #ff6b6b);
+    box-shadow: 0 18px 0 #d35400, 0 22px 35px rgba(255, 107, 129, 0.4);
+    cursor: pointer;
+    transition: all 0.1s ease-out;
+}
+#russian-btn:active {
+    transform: translateY(10px);
+    box-shadow: 0 8px 0 #d35400, 0 12px 20px rgba(255, 107, 129, 0.4);
+}
+#russian-message {
+    font-size: 1.5em;
+    margin-top: 30px;
+    height: 30px;
+    color: #fff;
+    text-shadow: 1px 1px 3px rgba(0,0,0,0.3);
+}
+
+/* --- 結果表示 --- */
+.result-popup {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background-color: rgba(0,0,0,0.6);
+    display: none; /* 初期状態は非表示 */
+    justify-content: center;
+    align-items: center;
+    z-index: 100;
+}
+.result-content {
+    background-color: white;
+    padding: 30px 40px;
+    border-radius: 20px;
+    text-align: center;
+    border: 5px solid #ff6347;
+    box-shadow: 0 10px 30px rgba(0,0,0,0.3);
+    animation: popup-show 0.4s cubic-bezier(0.18, 0.89, 0.32, 1.28);
+}
+@keyframes popup-show {
+    from { transform: scale(0.3) rotate(-15deg); opacity: 0; }
+    to { transform: scale(1) rotate(0deg); opacity: 1; }
+}
+#result-text, .russian-congrats {
+    font-size: 2.2em;
+    margin: 0 0 20px 0;
+    color: #ff6347;
+    font-weight: bold;
+}
+.result-content button {
+    font-family: 'Mochiy Pop One', sans-serif;
+    font-size: 1.2em;
+    padding: 10px 25px;
+    border: none;
+    border-radius: 10px;
+    background-color: #1e90ff;
+    color: white;
+    cursor: pointer;
+}
+
+/* ロシアンの当たり演出 */
+#russian-flash-overlay {
+    position: fixed; top: 0; left: 0;
+    width: 100%; height: 100%;
+    display: none;
+    z-index: 99;
+}
+.flash {
+    display: block !important;
+    animation: rainbow-flash 0.1s infinite;
+}
+@keyframes rainbow-flash {
+    0%, 100% { background-color: #000000; }
+    15% { background-color: #ffd700; }
+   }

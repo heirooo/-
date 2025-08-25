@@ -1,0 +1,95 @@
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>おごり決定ゲーム</title>
+    <link href="https://fonts.googleapis.com/css2?family=Mochiy+Pop+One&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="game.css">
+</head>
+<body>
+    <div id="top-page" class="container">
+        <h1 class="main-title">どっちで決める？</h1>
+        <div class="mode-selection">
+            <button onclick="showRoulette()">ルーレット</button>
+            <button onclick="showRussian()">ロシアン</button>
+        </div>
+    </div>
+
+    <div id="roulette-game" class="container" style="display:none;">
+        <h1 class="game-title">ルーレット</h1>
+        <div class="name-input-area">
+            <input type="text" id="name-input" placeholder="なまえを入力してね">
+            <button id="add-name-btn">追加</button>
+        </div>
+        <ul id="name-list"></ul>
+        <div class="roulette-wrapper">
+            <canvas id="roulette-canvas" width="300" height="300"></canvas>
+            <div class="arrow"></div>
+        </div>
+        <button id="start-roulette-btn" class="start-btn">スタート！</button>
+        <div id="roulette-result" class="result-popup" style="display:none;">
+            <div class="result-content">
+                <p id="result-text"></p>
+                <button onclick="resetRoulette()">もう一回</button>
+            </div>
+        </div>
+        <button class="back-btn" onclick="showTopPage()">もどる</button>
+    </div>
+
+    <div id="russian-game" class="container" style="display:none;">
+        <div id="russian-flash-overlay"></div>
+        <h1 class="game-title">ロシアン</h1>
+        <p class="russian-description">ボタンを押してね<br>(おごる確率10%)</p>
+        <div class="russian-button-wrapper">
+            <button id="russian-btn">PUSH!</button>
+        </div>
+        <p id="russian-message">運命のボタン…</p>
+        <div id="russian-result" class="result-popup" style="display:none;">
+            <div class="result-content">
+                <p class="russian-congrats">おごり確定！</p>
+                <button onclick="resetRussian()">もう一回</button>
+            </div>
+        </div>
+         <button class="back-btn" onclick="showTopPage()">もどる</button>
+    </div>
+
+    <script src="roulette.js"></script>
+    <script src="russian.js"></script>
+    <script>
+        // 画面切り替え用の基本スクリプト
+        const topPage = document.getElementById('top-page');
+        const rouletteGame = document.getElementById('roulette-game');
+        const russianGame = document.getElementById('russian-game');
+
+        function showTopPage() {
+            topPage.style.display = 'flex';
+            rouletteGame.style.display = 'none';
+            russianGame.style.display = 'none';
+            // ゲームの状態をリセット
+            if (window.resetRoulette) window.resetRoulette(true);
+            if (window.resetRussian) window.resetRussian();
+        }
+
+        function showRoulette() {
+            topPage.style.display = 'none';
+            rouletteGame.style.display = 'flex';
+        }
+
+        function showRussian() {
+            topPage.style.display = 'none';
+            russianGame.style.display = 'flex';
+        }
+function playSound(src) {
+        const audio = new Audio(src);
+        audio.play();
+    }
+
+    function showRoulette() {
+        topPage.style.display = 'none';
+        rouletteGame.style.display = 'flex';
+        playSound('ソ連国歌.wav'); // ルーレット画面に切り替える時にBGM再生
+    }
+    </script>
+</body>
+</html>
