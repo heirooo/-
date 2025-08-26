@@ -9,10 +9,11 @@
 </head>
 <body>
     <div id="top-page" class="container">
-        <h1 class="main-title">どっちで決める？</h1>
+        <h1 class="main-title">どれで決める？</h1>
         <div class="mode-selection">
             <button onclick="showRoulette()">ルーレット</button>
             <button onclick="showRussian()">ロシアン</button>
+            <button onclick="showRandomRussian()">ランダムロシアン</button>
         </div>
     </div>
 
@@ -54,43 +55,65 @@
          <button class="back-btn" onclick="showTopPage()">もどる</button>
     </div>
 
+    <div id="random-russian-game" class="container" style="display:none;">
+        <div id="random-russian-flash-overlay"></div>
+        <h1 class="game-title">ランダムロシアン</h1>
+        <p class="random-russian-description">ボタンに表示された確率を引いたらおごり！</p>
+        <div class="random-russian-button-wrapper">
+            <button id="random-russian-btn">PUSH!</button>
+        </div>
+        <p id="random-russian-message">運命のボタン…</p>
+        <div id="random-russian-result" class="result-popup" style="display:none;">
+            <div class="result-content">
+                <p class="random-russian-congrats">おごり確定！</p>
+                <button onclick="resetRandomRussian()">もう一回</button>
+            </div>
+        </div>
+         <button class="back-btn" onclick="showTopPage()">もどる</button>
+    </div>
+
     <script src="roulette.js"></script>
     <script src="russian.js"></script>
+    <script src="random-russian.js"></script>
     <script>
         // 画面切り替え用の基本スクリプト
         const topPage = document.getElementById('top-page');
         const rouletteGame = document.getElementById('roulette-game');
         const russianGame = document.getElementById('russian-game');
+        const randomRussianGame = document.getElementById('random-russian-game');
 
         function showTopPage() {
             topPage.style.display = 'flex';
             rouletteGame.style.display = 'none';
             russianGame.style.display = 'none';
+            randomRussianGame.style.display = 'none';
             // ゲームの状態をリセット
             if (window.resetRoulette) window.resetRoulette(true);
             if (window.resetRussian) window.resetRussian();
+            if (window.resetRandomRussian) window.resetRandomRussian();
         }
 
         function showRoulette() {
             topPage.style.display = 'none';
             rouletteGame.style.display = 'flex';
+            playSound('ソ連国歌.wav');
         }
 
         function showRussian() {
             topPage.style.display = 'none';
             russianGame.style.display = 'flex';
         }
-function playSound(src) {
-        const audio = new Audio(src);
-        audio.play();
-    }
 
-    function showRoulette() {
-        topPage.style.display = 'none';
-        rouletteGame.style.display = 'flex';
-        playSound('英雄の証.wav'); // ルーレット画面に切り替える時にBGM再生
-    }
+        function showRandomRussian() {
+            topPage.style.display = 'none';
+            randomRussianGame.style.display = 'flex';
+            if (window.initRandomRussian) window.initRandomRussian();
+        }
+
+        function playSound(src) {
+            const audio = new Audio(src);
+            audio.play();
+        }
     </script>
 </body>
-
 </html>
